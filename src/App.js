@@ -9,6 +9,7 @@ import RemoveFavourites from './components/RemoveFavourites';
 
 const App = () => {
 	const [movies, setMovies] = useState([]);
+	const [heroMovies, setHeroMovies] = useState([]);
 	const [favourites, setFavourites] = useState([]);
 	const [searchValue, setSearchValue] = useState('');
 
@@ -21,14 +22,14 @@ const App = () => {
 	 
 		axios.all([getHero, getMovie]).then(
 		   axios.spread((...allData) => {
-			  const allDataHero = allData[0].data.results[0].name
-			  const geHeroMovie = allData[1].data.Search[0].Poster
+			  const getHero = allData[0].data.results[0].name
+			  const getHeroMovie = allData[1].data.Search[0].Poster
 	 
-			  setSuperheroData(allDataHero)
-			  setMovies(geHeroMovie)  
+			  setHeroMovies(getHeroMovie)
+			  setMovies(getHero)  
 	  
-			 console.log(allDataHero)
-			 console.log(geHeroMovie)
+			 console.log(getHeroMovie)
+			 console.log(geHero)
 			 console.log(allData)
 	 
 		   })
@@ -37,8 +38,8 @@ const App = () => {
 	 
 	 
 		 useEffect(() => {
-		   fetchData(searchText)
-		}, [searchText]) */
+		   fetchData(searchValue)
+		}, [searchValue]) */
 
 		const response = await fetch(url);
 		const responseJson = await response.json();
@@ -84,7 +85,7 @@ const App = () => {
 	return (
 		<div className='container-fluid movie-app'>
 			<div className='row d-flex align-items-center mt-4 mb-4'>
-				<MovieListHeading heading='SuperHeros' />
+				<MovieListHeading heading='SUPERHEROS' />
 				<SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
 			</div>
 			<div className='row'>
